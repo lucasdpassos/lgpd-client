@@ -8,10 +8,15 @@
      <img src="./assets/aprovalogo.png" alt=""
      style="max-width:200px;"
      >
+    Formulário de LGPD (Lei Geral de Proteção de Dados) 
     </v-app-bar>
   
     <v-main>
+      <div style="display:flex;">        
+      <v-img src="./assets/doc1.svg" style="max-width: 200px; margin-left:10%;margin-top:10%;" />
       <Form />
+      <v-img src="./assets/doc2.svg" style="max-width: 500px; margin-left:7%;" />
+      </div>
     </v-main>
   </v-app>
 </template>
