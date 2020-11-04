@@ -1,28 +1,19 @@
-<template>
-  
+<template>  
   <v-form
     ref="form"
     v-model="valid"
     lazy-validation
-    style="margin-left: 17%;"
+    style="margin-left: 10%;"
+    class="form1"
   >
   <v-row justify="center">
     <v-dialog
       v-model="dialog"
       persistent
       max-width="500"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          style="margin-top:24%;"
-        >
-          Abrir Termos LGDP
-        </v-btn>
-      </template>
+    >  
+       
+     
       <v-card>
         <v-card-title class="headline">
           Lei de Proteção aos Dados
@@ -133,24 +124,17 @@ Versão do documento: 01 Data de aprovação do Conselho de Administração: 30/
           <v-btn
             color="green darken-1"
             text
-            @click="dialog = false"
+            @click="dialog = false"            
           >
-            Disagree
-          </v-btn>
-          <v-btn
-            color="green darken-1"
-            text
-            @click="dialog = false"
-          >
-            Agree
-          </v-btn>
+            Fechar
+          </v-btn>         
         </v-card-actions>
       </v-card>
     </v-dialog>
   </v-row>
     <v-text-field
       v-model="name"
-      :counter="10"
+      :counter="40"
       :rules="nameRules"
       label="Nome"
       required
@@ -176,12 +160,29 @@ Versão do documento: 01 Data de aprovação do Conselho de Administração: 30/
     ></v-text-field>  
 
     
-    <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'Você deve concordar para prosseguir!']"
-      label="Você concorda?"
-      required
-    ></v-checkbox>    
+     <v-container fluid>
+    <v-checkbox v-model="checkbox">
+      <template v-slot:label>
+        <div>
+          Eu concordo com os
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <a
+                target="_blank"
+                @click="dialog = true"
+                @click.stop
+                v-on="on"
+              >
+                Termos e condições
+              </a>
+            </template>
+            Abrir janela
+          </v-tooltip>
+          
+        </div>
+      </template>
+    </v-checkbox>
+  </v-container> 
     <v-btn
       :disabled="!valid"
       color="success"
@@ -210,8 +211,10 @@ Versão do documento: 01 Data de aprovação do Conselho de Administração: 30/
 
   export default {
     data: () => ({
+      termos: '',
       dialog: false,
       valid: true,
+      checkbox: false,
       name: '',
       telefone: '',
       nameRules: [
@@ -243,3 +246,4 @@ Versão do documento: 01 Data de aprovação do Conselho de Administração: 30/
     },
   }
 </script>
+
