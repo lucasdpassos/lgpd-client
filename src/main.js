@@ -6,7 +6,6 @@ import VueMask from 'v-mask'
 Vue.config.productionTip = false
 Vue.use(VueMask)
 
-
 new Vue({
   vuetify,
   render: h => h(App)

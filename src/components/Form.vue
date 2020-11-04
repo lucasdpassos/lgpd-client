@@ -191,6 +191,14 @@ Versão do documento: 01 Data de aprovação do Conselho de Administração: 30/
     >
       Validar
     </v-btn>
+    <v-btn
+      
+      color="primary"
+      class="mr-4"
+      @click='writeData()'
+    >
+      Enviar
+    </v-btn>
 
     <v-btn
       color="error"
@@ -207,11 +215,12 @@ Versão do documento: 01 Data de aprovação do Conselho de Administração: 30/
 
 <script>
 
-
+import { db } from '../services/firebase';
 
   export default {
-    data: () => ({
+    data: () => ({      
       termos: '',
+      userId: '',
       dialog: false,
       valid: true,
       checkbox: false,
@@ -235,15 +244,30 @@ Versão do documento: 01 Data de aprovação do Conselho de Administração: 30/
     methods: {
       validate () {
         this.$refs.form.validate()
+        
+        
       },
       reset () {
         this.$refs.form.reset()
       },
       resetValidation () {
         this.$refs.form.resetValidation()
-      },
-      
+      },      
+     
     },
+
+    async created() {
+     
+      function writeData() {
+
+        db().ref('users/').set({
+          email: this.email,
+          nome:  this.name,
+          telefone: this.telefone,
+          
+        })
+        }
+      }
   }
 </script>
 

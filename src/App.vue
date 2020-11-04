@@ -12,7 +12,7 @@
      style="max-width:200px;"
      class="logo1"
      >
-    <p class="p1" >Formulário de LGPD (Lei Geral de Proteção de Dados) </p>
+    <p class="p1" >Formulário de Política de Privacidade </p>
     </v-app-bar>
   
     <v-main>
