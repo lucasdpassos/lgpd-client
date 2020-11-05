@@ -190,15 +190,7 @@ Versão do documento: 01 Data de aprovação do Conselho de Administração: 30/
       @click="validate"
     >
       Validar
-    </v-btn>
-    <v-btn
-      
-      color="primary"
-      class="mr-4"
-      @click='writeData()'
-    >
-      Enviar
-    </v-btn>
+    </v-btn>    
 
     <v-btn
       color="error"
@@ -218,7 +210,8 @@ Versão do documento: 01 Data de aprovação do Conselho de Administração: 30/
 import { db } from '../services/firebase';
 
   export default {
-    data: () => ({      
+    data: () => ({
+      user: [],      
       termos: '',
       userId: '',
       dialog: false,
@@ -244,7 +237,16 @@ import { db } from '../services/firebase';
     methods: {
       validate () {
         this.$refs.form.validate()
-        
+      
+                
+        return db.collection('users').add({
+          name: this.name,
+          telefone: this.telefone,
+          email: this.email
+        })
+        .then(function(docRef) {
+          console.log("Usuário cadastrado com o ID: ", docRef.id)
+        })
         
       },
       reset () {
@@ -256,18 +258,10 @@ import { db } from '../services/firebase';
      
     },
 
-    async created() {
-     
-      function writeData() {
-
-        db().ref('users/').set({
-          email: this.email,
-          nome:  this.name,
-          telefone: this.telefone,
+    
           
-        })
-        }
-      }
+       
+      
   }
 </script>
 
