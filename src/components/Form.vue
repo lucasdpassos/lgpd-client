@@ -185,16 +185,22 @@ import { db } from '../services/firebase';
     methods: {
       validate () {
         this.$refs.form.validate()
-      
-                
+
         return db.collection('users').add({
           name: this.name,
           telefone: this.telefone,
           email: this.email
-        })
+
+          
+        }),
+       this.$refs.form.reset()
+                
+        
         .then(function(docRef) {
           console.log("Usuário cadastrado com o ID: ", docRef.id)
-        })
+          
+        })       
+       
         
       },
       reset () {
